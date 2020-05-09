@@ -1,0 +1,47 @@
+<template>
+  <div class="nav-bar">
+    <!-- <div class="nav-link-wrapper">
+      <router-link class="nav-link" to="/">리스트로 보기</router-link>
+      <router-link class="nav-link nav-link2" to="/grid">그리드로 보기</router-link>
+    </div>-->
+    <ListType />
+    <SelectType></SelectType>
+  </div>
+</template>
+
+<script>
+import SelectType from "./SelectType";
+import ListType from "./ListType";
+export default {
+  components: {
+    SelectType,
+    ListType
+  }
+};
+</script>
+
+<style lang="scss">
+.nav-bar {
+  padding: 20px 30px;
+  position: fixed;
+  z-index: 99;
+  top: 0;
+  width: 100%;
+  background-color: #fff;
+  border-bottom: 1px solid #dddddd;
+
+  .nav-link-wrapper {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 10px;
+    .nav-link {
+      color: #222222;
+    }
+
+    .nav-link2 {
+      margin-left: 40px;
+    }
+  }
+}
+</style>
