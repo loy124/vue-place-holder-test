@@ -1,6 +1,6 @@
 <template>
   <div :class="{'list-container-grid' : gridView}">
-    <div v-for="(li,index) in list" :key="index" class="list-wrapper">
+    <div @click="moveDetail(li.id)" v-for="(li,index) in list" :key="index" class="list-wrapper">
       <div class="list-title-header">
         <div class="list-title">{{li.title}}</div>
         <div class="list-writer-name">작성자: {{li.name}}</div>
@@ -17,10 +17,16 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapState, mapMutations } from "vuex";
 export default {
   computed: {
     ...mapState(["gridView", "select8", "select16", "list"])
+  },
+  methods: {
+    ...mapMutations(["SET_LOADING"]),
+    moveDetail(id) {
+      this.$router.push(`/list/${id}`);
+    }
   }
 };
 </script>

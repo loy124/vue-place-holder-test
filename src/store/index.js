@@ -2,15 +2,10 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 
 Vue.use(Vuex);
-const sel8 = JSON.parse(sessionStorage.getItem('select8'));
-const sel16 = JSON.parse(sessionStorage.getItem('select16'));
-console.log(sel8);
-console.log(sel16);
 export default new Vuex.Store({
     state: {
         loading: false,
-        // select: { select8: true, select16: false },
-        gridView: false,
+        gridView: sessionStorage.getItem('gridView') === 'true' ? true : false,
         select8: sessionStorage.getItem('select8') ?
             JSON.parse(sessionStorage.getItem('select8')) :
             true,
@@ -18,6 +13,7 @@ export default new Vuex.Store({
             JSON.parse(sessionStorage.getItem('select16')) :
             false,
         list: [],
+        listDetail: '',
     },
     mutations: {
         SET_LOADING(state, data) {
@@ -25,6 +21,7 @@ export default new Vuex.Store({
         },
         SET_GRID_VIEW(state, data) {
             state.gridView = data;
+            sessionStorage.setItem('gridView', data);
         },
         SET_SELECT8(state, data) {
             state.select8 = data;
@@ -37,6 +34,9 @@ export default new Vuex.Store({
         },
         SET_LIST(state, data) {
             state.list = data;
+        },
+        SET_LIST_DETAIL(state, data) {
+            state.listDetail = data;
         },
     },
     actions: {},

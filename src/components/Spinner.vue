@@ -15,7 +15,7 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
 .lds-facebook {
   display: inline-block;
   position: fixed;
@@ -30,21 +30,22 @@ export default {
   position: absolute;
   left: 6px;
   width: 13px;
-  background: #1374f8;
+  background: #d9454d;
   animation: lds-facebook 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
+  &:nth-child(1) {
+    left: 6px;
+    animation-delay: -0.24s;
+  }
+  &:nth-child(2) {
+    left: 26px;
+    animation-delay: -0.12s;
+  }
+  &:nth-child(3) {
+    left: 45px;
+    animation-delay: 0;
+  }
 }
-.lds-facebook div:nth-child(1) {
-  left: 6px;
-  animation-delay: -0.24s;
-}
-.lds-facebook div:nth-child(2) {
-  left: 26px;
-  animation-delay: -0.12s;
-}
-.lds-facebook div:nth-child(3) {
-  left: 45px;
-  animation-delay: 0;
-}
+
 @keyframes lds-facebook {
   0% {
     top: 6px;

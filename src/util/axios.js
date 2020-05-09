@@ -30,6 +30,7 @@ export const board = {
                                 { image: 'https://via.placeholder.com/150/92c952' },
                                 { image: 'https://via.placeholder.com/150/56a8c0' },
                             ];
+                            //랜덤으로 포스터를 넣어줄 랜덤 변수 생성
                             const randomNumber = Math.floor(
                                 Math.random() * imageLists.length,
                             );
@@ -41,9 +42,19 @@ export const board = {
                 });
                 store.commit('SET_LOADING', false);
                 store.commit('SET_LIST', list);
-                console.log(list);
+                // console.log(list);
                 return list;
             },
         );
+    },
+    fetchDetail(id) {
+        store.commit('SET_LOADING', true);
+        return request('get', 'posts', { id: id }).then(async(res) => {
+            const comments = await request('get', 'comments', { postId: id });
+            res[0]['comment'] = comments;
+            store.commit('SET_LOADING', false);
+            store.commit('SET_LIST_DETAIL', res);
+            return res;
+        });
     },
 };

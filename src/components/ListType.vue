@@ -38,4 +38,9 @@ export default {
     cursor: pointer;
   }
 }
+@media screen and (max-width: 768px) {
+  .select-list-type-cotainer {
+    display: none;
+  }
+}
 </style>
