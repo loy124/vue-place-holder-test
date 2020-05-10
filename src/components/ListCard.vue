@@ -8,9 +8,9 @@
       <hr />
       <div class="list-content">
         <div class="list-content-image-wrapper">
-          <img :src="li.image" />
+          <img :src="li.image" alt="이미지없음" />
         </div>
-        <div class="list-content- body">{{li.body}}</div>
+        <div class="list-content-body">{{li.body}}</div>
       </div>
     </div>
   </div>

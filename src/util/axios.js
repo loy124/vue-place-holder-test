@@ -12,6 +12,13 @@ const request = (method, url, data) => {
         .then((res) => res.data)
         .catch((error) => console.log(error));
 };
+const imageLists = [
+    { image: 'https://via.placeholder.com/150/771796' },
+    { image: 'https://via.placeholder.com/150/92c952' },
+    { image: 'https://via.placeholder.com/150/56a8c0' },
+];
+
+const randomNumber = () => Math.floor(Math.random() * imageLists.length);
 
 export const board = {
     fetchList(start = 0, limit = 8) {
@@ -25,17 +32,8 @@ export const board = {
                     datas.forEach((data) => {
                         if (li.userId === data.id) {
                             li['name'] = data.name;
-                            const imageLists = [
-                                { image: 'https://via.placeholder.com/150/771796' },
-                                { image: 'https://via.placeholder.com/150/92c952' },
-                                { image: 'https://via.placeholder.com/150/56a8c0' },
-                            ];
                             //랜덤으로 포스터를 넣어줄 랜덤 변수 생성
-                            const randomNumber = Math.floor(
-                                Math.random() * imageLists.length,
-                            );
-
-                            li['image'] = imageLists[randomNumber].image;
+                            li['image'] = imageLists[randomNumber()].image;
                         }
                     });
                     return li;
@@ -51,10 +49,12 @@ export const board = {
         store.commit('SET_LOADING', true);
         return request('get', 'posts', { id: id }).then(async(res) => {
             const comments = await request('get', 'comments', { postId: id });
-            res[0]['comment'] = comments;
+            res[0]['comments'] = comments;
+            res[0]['image'] = imageLists[randomNumber()].image;
             store.commit('SET_LOADING', false);
-            store.commit('SET_LIST_DETAIL', res);
-            return res;
+            store.commit('SET_LIST_DETAIL', res[0]);
+
+            return res[0];
         });
     },
 };

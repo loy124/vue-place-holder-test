@@ -1,11 +1,8 @@
 <template>
   <div class="nav-bar">
-    <!-- <div class="nav-link-wrapper">
-      <router-link class="nav-link" to="/">리스트로 보기</router-link>
-      <router-link class="nav-link nav-link2" to="/grid">그리드로 보기</router-link>
-    </div>-->
-    <ListType />
-    <SelectType></SelectType>
+    <div>{{$route.name}}</div>
+    <ListType v-if="$route.name === 'Main'" />
+    <SelectType v-if="$route.name === 'Main'" />
   </div>
 </template>
 
@@ -22,6 +19,7 @@ export default {
 
 <style lang="scss">
 .nav-bar {
+  height: 50px;
   padding: 20px 30px;
   position: fixed;
   z-index: 99;

@@ -1,24 +1,16 @@
 <template>
   <div>
-    <Navbar />
-    <!-- <SelectType /> -->
     <div class="select-list-count">총 글의 갯수: {{list.length}}</div>
     <ListCard />
   </div>
 </template>
 
 <script>
-import SelectType from "../components/SelectType";
-import ListType from "../components/ListType";
 import ListCard from "../components/ListCard";
-import Navbar from "../components/Navbar";
 import { board } from "../util/axios";
 import { mapState, mapMutations } from "vuex";
 export default {
   components: {
-    Navbar,
-    SelectType,
-    ListType,
     ListCard
   },
   data() {

@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <Navbar />
     <Spinner />
     <router-view />
   </div>
